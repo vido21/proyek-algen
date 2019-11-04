@@ -16,8 +16,11 @@ class Model():
                 self.models.add(Dense(units=layers_list[i],activation='relu'))
         self.models.add(Dense(1,activation='sigmoid'))
     def train(self):
-        self.models.fit(X_train,y_train,epochs=10,verbose=0)
-    def evaluate
+        self.models.fit(self.X_train,self.y_train,epochs=10,verbose=0)
+    def evaluate(self):
+        pred = self.models.predict(X_test)
+        score = accuracy_score(y_test,pred)
+        return score
 
 
 
