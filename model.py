@@ -13,9 +13,10 @@ class Model():
         self.models.add(Dense(1,activation='sigmoid'))
     def train(self):
         X_train = pd.read_csv()
-        y_train
-        X_test
-        y_test
+        y_train = pd.read_csv()
+        X_test = pd.read_csv()
+        y_test = pd.read_csv()
+        s
 
 
     
