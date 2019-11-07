@@ -13,7 +13,7 @@ class Model():
         self.y_test = pd.read_csv("y_test.csv")
         for v in range(len(layers_list)):
             if v==0:
-                self.models.add(Dense(units=layers_list[v],activation='relu',input_shape=(8,)))
+                self.models.add(Dense(units=layers_list[v],activation='relu',input_shape=(self.X_train.shape[1],)))
             else:
                 self.models.add(Dense(units=layers_list[v],activation='relu'))
         self.models.add(Dense(1,activation='sigmoid'))
