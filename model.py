@@ -3,6 +3,7 @@ from keras.layers import Dense
 import pandas as pd
 from sklearn.metrics import accuracy_score
 import warnings
+import numpy as  np
 warnings.filterwarnings("ignore")
 class Model():
     def __init__(self,layers_list=[]):
