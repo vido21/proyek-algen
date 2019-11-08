@@ -3,6 +3,7 @@ from keras.layers import Dense
 import pandas as pd
 from sklearn.metrics import accuracy_score
 import warnings
+import numpy as  np
 warnings.filterwarnings("ignore")
 class Model():
     def __init__(self,layers_list=[]):
@@ -21,8 +22,9 @@ class Model():
     def train(self):
         self.models.fit(self.X_train.values,self.y_train.values,epochs=10,verbose=0)
     def evaluate(self):
-        pred = self.models.predict(X_test.values)
-        score = accuracy_score(y_test.values,pred)
+        pred = self.models.predict(self.X_test.values)
+        print(np.round(pred))
+        score = accuracy_score(self.y_test,pred)
         return score
 
 
