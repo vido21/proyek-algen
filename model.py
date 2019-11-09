@@ -22,10 +22,11 @@ class Model():
     def train(self):
         self.models.fit(self.X_train.values,self.y_train.values,epochs=10,verbose=0)
     def evaluate(self):
-        pred = self.models.predict(self.X_test.values)
-        print(np.round(pred))
-        score = accuracy_score(self.y_test,pred)
+        pred = self.models.predict_classes(self.X_test.values)
+        score = accuracy_score(self.y_test.values,pred)
         return score
+        
+
 
 
 
