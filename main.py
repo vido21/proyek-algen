@@ -4,7 +4,7 @@ from itertools import combinations
 
 def inisiasiPopulasi(maxPopulasi,panjangKromosom):
     populasi=[]
-    for i in range(max):
+    for i in range(maxPopulasi):
         randomKromosom=[random.randint(1,6) for i in range(panjangKromosom)]
         populasi.append({"kromosom":randomKromosom,"fitness":0})
     return populasi
@@ -44,7 +44,7 @@ def fitness(populasi):
 
 if __name__=="__main__":
     #inisiasi Populasi
-    populasi=inisiasiPopulasi(5)
+    populasi=inisiasiPopulasi(3,2)
 
     for i in range(5):
         #menghitung fitness
@@ -62,10 +62,7 @@ if __name__=="__main__":
         mutasi(populasi)
 
     
-    print populasi
-        
-
-    
+    print(populasi)
     
     # totalPopulasi=[]
     # matingPool=seleksi(inisiasiPopulasi,3)
