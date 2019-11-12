@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from model import Model
 import random
 from itertools import combinations
@@ -32,6 +33,7 @@ def one_point_crossover(x, y):
 def crossover(populasi):
     offspring = []
     tmp = combinations(populasi, 2)
+
     x = []
     for _ in tmp:
         x.append(_)
@@ -51,11 +53,11 @@ def crossover(populasi):
     # hasilnya akan terdapat sebanyak 2x|populasi| awal
     return offspring
 
-def mutasi(populasi):
-    panjangKromosom=8
-    individu=populasi.index(findchoose.random(populasi))
+def mutasi(populasi,panjangKromosom):
+
+    individu=populasi.index(random.choice(populasi))
     gen=random.randint(0,panjangKromosom+1)
-    populasi[individu]['kromosom'][gen]=random.randint(1,255)
+    populasi[individu]['kromosom'][gen]=random.randint(1,255)   
     m=Model(populasi[individu]['kromosom'])
     m.train()
     populasi[individu]['fitness']=m.evaluate()
@@ -82,11 +84,12 @@ if __name__ == "__main__":
         print(populasi)
 
         #crossover
-        populasi = crossOver(populasi)
+        populasi = crossover(populasi)
+        print(populasi)
         fitness(populasi)
 
         #mutasi
-        mutasi(populasi)
+        mutasi(populasi,8)
 
     
     print(populasi)
