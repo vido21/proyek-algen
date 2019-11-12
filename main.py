@@ -12,7 +12,7 @@ def inisiasi_populasi(maxPopulasi,panjangKromosom):
 
 def seleksi(populasi,pilih):
     matingPool=[]
-    for i in range(pilih):
+    for _ in range(pilih):
         a=random.choice(populasi)
         b=random.choice(populasi)
         if (a['fitness']>b['fitness']):
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         print(populasi)
 
         #crossover
-        populasi = crossOver(populasi)
+        populasi = crossover(populasi)
         fitness(populasi)
 
         #mutasi
@@ -94,7 +94,3 @@ if __name__ == "__main__":
     # totalPopulasi=[]
     # matingPool=seleksi(inisiasiPopulasi,3)
     # while len(totalPopulasi)<50:
-
-
-
-    
