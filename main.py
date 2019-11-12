@@ -33,13 +33,13 @@ def one_point_crossover(x, y):
 
 def crossover(population):
     offspring = []
-    tmp = combinations(populasi, 2)
+    tmp = combinations(population, 2)
 
     x = []
     for _ in tmp:
         x.append(_)
     random.shuffle(x)
-    # Ambil n/2 dari nC2 populasi
+    # Ambil n/2 dari nC2 population
     x = x[:len(population)//2]
     for p1, p2 in x:
         tx = []
@@ -51,16 +51,16 @@ def crossover(population):
         offspring.append({'kromosom':tx, 'fitness':0})
         offspring.append({'kromosom':ty, 'fitness':0})
     offspring.extend(population)
-    # hasilnya akan terdapat sebanyak 2x|populasi| awal
+    # hasilnya akan terdapat sebanyak 2x|population| awal
     return offspring
 
 
-def mutasi(populasi,panjangKromosom):
+def mutasi(population,panjangKromosom):
 
-    individu=populasi.index(random.choice(populasi))
+    individu=population.index(random.choice(population))
     gen=random.randint(0,panjangKromosom+1)
-    populasi[individu]['kromosom'][gen]=random.randint(1,255)   
-    m=Model(populasi[individu]['kromosom'])
+    population[individu]['kromosom'][gen]=random.randint(1,255)   
+    m=Model(population[individu]['kromosom'])
 
     m.train()
     population[individu]['fitness']=m.evaluate()
@@ -75,27 +75,39 @@ def fitness(population):
         del m
 
 if __name__ == "__main__":
-    #inisiasi Populasi
-    population = populationInitiation(5, 8)
+    #inisiasi population
+    population = populationInitiation(10, 8)
 
-    # for i in range(5):
-    #     #menghitung fitness
-    #     fitness(population)
-        
-    #     #seleksi
-    #     population = seleksi(population,3)
-    #     print(population)
+    for i in range(5):
+        #menghitung fitness
+        fitness(population)
+        print("generasi ke "+str(i))
+        for individu in population:
+            print(individu)
+        print("")
+
+        #seleksi
+        population = seleksi(population,3)
+        # print(population)
+        print("generasi ke "+str(i))
+        for individu in population:
+            print(individu)
+        print("")
 
         #crossover
-        populasi = crossover(populasi)
-        print(populasi)
-        fitness(populasi)
+        population = crossover(population)
+        # print(population)
+        fitness(population)
+        print("generasi ke "+str(i))
+        for individu in population:
+            print(individu)
+        print("")
 
         #mutasi
-        mutasi(populasi,8)
+        mutasi(population,8)
+        print("generasi ke "+str(i))
+        for individu in population:
+            print(individu)
+        print("")
     
-    print(population)
-    
-    # totalPopulasi=[]
-    # matingPool=seleksi(inisiasiPopulasi,3)
-    # while len(totalPopulasi)<50:
+    # print(population)
