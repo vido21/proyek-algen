@@ -26,6 +26,8 @@ def seleksi(population,pilih):
                 matingPool.append(a)
             else :
                 continue
+        elif (a == b):
+            continue
         else:
             if b not in matingPool:
                 matingPool.append(b)
