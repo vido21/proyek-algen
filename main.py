@@ -1,7 +1,11 @@
 #!/usr/bin/python3
-from model import Model
+
+import time
 import random
+from model import Model
 from itertools import combinations
+
+random.seed(time.time())
 
 def populationInitiation(maxPopulation,chromLength):
     population=[]
@@ -76,15 +80,15 @@ def fitness(population):
 
 if __name__ == "__main__":
     #inisiasi population
-    population = populationInitiation(10, 8)
+    population = populationInitiation(5, 8)
+    #menghitung fitness
+    fitness(population)
+    print("Inisiasi Populasi")
+    for individu in population:
+        print(individu)
+    print("")
 
-    for i in range(5):
-        #menghitung fitness
-        fitness(population)
-        print("generasi ke "+str(i))
-        for individu in population:
-            print(individu)
-        print("")
+    for i in range(10):
 
         #seleksi
         population = seleksi(population,3)
