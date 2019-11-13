@@ -98,7 +98,7 @@ if __name__ == "__main__":
         print(individu)
     print("")
 
-    for i in range(20):
+    for i in range(10):
 
         #seleksi
         population = seleksi(population,3)
