@@ -96,12 +96,12 @@ if __name__ == "__main__":
         print(individu)
     print("")
 
-    for i in range(10):
+    for i in range(20):
 
         #seleksi
         population = seleksi(population,3)
 
-        print("seleksi generasi ke "+str(i))
+        print("seleksi generasi ke "+str(i+1))
         for individu in population:
             print(individu)
         print("")
@@ -111,14 +111,14 @@ if __name__ == "__main__":
 
         #menghitung fitness
         fitness(population)
-        print("krosofer generasi ke "+str(i))
+        print("crossover generasi ke "+str(i+1))
         for individu in population:
             print(individu)
         print("")
 
         #mutasi
         mutasi(population,8)
-        print("mutasi generasi ke "+str(i))
+        print("mutasi generasi ke "+str(i+1))
         for individu in population:
             print(individu)
         print("")
