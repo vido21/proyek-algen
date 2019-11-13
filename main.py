@@ -18,13 +18,19 @@ def populationInitiation(maxPopulation,chromLength):
 
 def seleksi(population,pilih):
     matingPool=[]
-    for _ in range(pilih):
+    while len(matingPool) < pilih:
         a=random.choice(population)
         b=random.choice(population)
         if (a['fitness']>b['fitness']):
-            matingPool.append(a)
+            if a not in matingPool:
+                matingPool.append(a)
+            else :
+                continue
         else:
-            matingPool.append(b)
+            if b not in matingPool:
+                matingPool.append(b)
+            else :
+                continue
     return matingPool
 
 def one_point_crossover(x, y):
@@ -79,8 +85,10 @@ def fitness(population):
         del m
 
 if __name__ == "__main__":
+
     #inisiasi population
     population = populationInitiation(5, 8)
+    
     #menghitung fitness
     fitness(population)
     print("Inisiasi Populasi")
@@ -92,26 +100,25 @@ if __name__ == "__main__":
 
         #seleksi
         population = seleksi(population,3)
-        # print(population)
-        print("generasi ke "+str(i))
+
+        print("seleksi generasi ke "+str(i))
         for individu in population:
             print(individu)
         print("")
 
         #crossover
         population = crossover(population)
-        # print(population)
+
+        #menghitung fitness
         fitness(population)
-        print("generasi ke "+str(i))
+        print("krosofer generasi ke "+str(i))
         for individu in population:
             print(individu)
         print("")
 
         #mutasi
         mutasi(population,8)
-        print("generasi ke "+str(i))
+        print("mutasi generasi ke "+str(i))
         for individu in population:
             print(individu)
         print("")
-    
-    # print(population)
