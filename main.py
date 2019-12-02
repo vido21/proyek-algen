@@ -4,7 +4,8 @@ import time
 import random
 from model import Model
 from itertools import combinations
-
+import gc
+PANJANGKROMOSOM=3
 random.seed(time.time())
 
 def populationInitiation(maxPopulation,chromLength):
@@ -70,13 +71,16 @@ def crossover(population):
 def mutasi(population,panjangKromosom):
 
     individu=population.index(random.choice(population))
-    gen=random.randint(0,panjangKromosom+1)
-    population[individu]['kromosom'][gen]=random.randint(1,255)   
-    m=Model(population[individu]['kromosom'])
-
-    m.train()
-    population[individu]['fitness']=m.evaluate()
-    del m
+    gen=random.randint(0,panjangKromosom)
+    try:
+        population[individu]['kromosom'][gen]=random.randint(1,255)   
+        m=Model(population[individu]['kromosom'])
+        m.train()
+        population[individu]['fitness']=m.evaluate()
+        # del m
+        gc.collect()
+    except:
+        return
 
 def fitness(population):
     for individu in range(len(population)):
@@ -84,12 +88,13 @@ def fitness(population):
         m=Model(population[individu]['kromosom'])
         m.train()
         population[individu]['fitness']=m.evaluate()
-        del m
+        # del m
+        gc.collect()
 
 if __name__ == "__main__":
 
     #inisiasi population
-    population = populationInitiation(5, 8)
+    population = populationInitiation(10, PANJANGKROMOSOM)
     
     #menghitung fitness
     fitness(population)
@@ -98,10 +103,10 @@ if __name__ == "__main__":
         print(individu)
     print("")
 
-    for i in range(10):
+    for i in range(20):
 
         #seleksi
-        population = seleksi(population,3)
+        population = seleksi(population,5)
 
         print("seleksi generasi ke "+str(i+1))
         for individu in population:
@@ -119,7 +124,7 @@ if __name__ == "__main__":
         print("")
 
         #mutasi
-        mutasi(population,8)
+        mutasi(population,PANJANGKROMOSOM)
         print("mutasi generasi ke "+str(i+1))
         for individu in population:
             print(individu)
