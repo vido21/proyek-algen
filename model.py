@@ -20,7 +20,7 @@ class Model():
         self.models.add(Dense(1,activation='sigmoid'))
         self.models.compile(loss="binary_crossentropy",metrics=["accuracy"],optimizer='adam')
     def train(self):
-        self.models.fit(self.X_train.values,self.y_train.values,epochs=10,verbose=0)
+        self.models.fit(self.X_train.values,self.y_train.values,epochs=20,verbose=0)
     def evaluate(self):
         pred = self.models.predict_classes(self.X_test.values)
         score = accuracy_score(self.y_test.values,pred)
